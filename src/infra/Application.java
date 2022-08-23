@@ -15,7 +15,17 @@ public class Application {
             System.out.print("명령어 : ");
             String inputUri = sc.nextLine().trim();
 
+            if(inputUri.equals(".exit")){
+                System.out.println("어플리케이션을 종료합니다.");
+                break;
+            }
+
             Request request = new Request(inputUri);
+            if(!request.isValidRequest()){
+                System.out.println("존재하지 않는 명령어입니다.");
+                continue;
+            }
+
             Controller controller = getController(request.getControllerCode());
 
             if(controller != null){

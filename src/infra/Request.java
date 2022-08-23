@@ -12,7 +12,7 @@ public class Request {
         this.uriParser = new UriParser(uri);
     }
     public boolean isValidRequest(){
-        return false;
+        return uriParser.isValid();
     }
     public String getControllerCode(){
         return uriParser.getControllerCode();
