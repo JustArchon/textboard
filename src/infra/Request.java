@@ -46,6 +46,11 @@ public class Request {
     public boolean isValidRequest(){
         return uriParser.isValid();
     }
+
+    public String getOriginUri(){
+        return uriParser.getURI();
+    }
+
     public String getControllerCode(){
         return uriParser.getControllerCode();
     }

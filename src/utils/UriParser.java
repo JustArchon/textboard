@@ -61,4 +61,8 @@ public class UriParser {
     public boolean isValid() {
         return isValid;
     }
+
+    public String getURI(){
+        return URI;
+    }
 }
