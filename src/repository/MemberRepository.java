@@ -21,7 +21,7 @@ public class MemberRepository {
 
     public Member getMemberByLoginId(String loginId){
 
-        for(Member member :  store){
+        for(Member member : store){
             if(member.getLoginId().equals(loginId)){
                 return member;
             }

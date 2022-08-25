@@ -52,10 +52,11 @@ public class Request {
     public String getTarget(){
         return uriParser.getTarget();
     }
-    public Object getParameterValue(String key, Class cls){
-        Map<String, Object> parameter = uriParser.getParameter();
-        return cls.cast(parameter.get(key));
-    }
+
+//    public Object getParameterValue(String key, Class cls){
+//        Map<String, Object> parameter = uriParser.getParameter();
+//        return cls.cast(parameter.get(key));
+//    }
     public int getParameterIntValue(String key){
         Map<String, Object> parameter = uriParser.getParameter();
         return Integer.parseInt(parameter.get(key).toString());
