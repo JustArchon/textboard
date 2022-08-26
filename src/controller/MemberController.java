@@ -7,6 +7,7 @@ import service.MemberService;
 import utils.Util;
 
 import java.time.LocalDateTime;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class MemberController implements Controller{
@@ -35,6 +36,9 @@ public class MemberController implements Controller{
                 break;
             case "modify":
                 modify(request);
+                break;
+            case "signout":
+                signout(request);
                 break;
             default:
                 System.out.println("올바른 요청을 보내주시기 바랍니다.");
@@ -131,12 +135,39 @@ public class MemberController implements Controller{
         System.out.print("변경하고자 하는 비밀번호 : ");
         String newPassword = sc.nextLine().trim();
         findMember.setPassword(newPassword);
-
-        System.out.print("변경하고자 하는 이름 : ");
-        String newName = sc.nextLine().trim();
-        findMember.setName(newName);
+        findMember.setUpdateDate(LocalDateTime.now());
 
         System.out.println("비밀번호가 잘 변경 되었습니다.");
 
     }
+
+    public void signout(Request request){
+        String paramKey = "loginId";
+        if(!Util.hasParam(request, paramKey)){
+            System.out.println(paramKey + " 파라미터가 필요합니다.");
+            return;
+        }
+
+        String logonMemberId = request.getLogonMemberId();
+        String parameterValue = request.getParameterStrValue(paramKey);
+
+        if(!logonMemberId.equals(parameterValue)){
+            System.out.println("본인 계정만 탈퇴할 수 있습니다.");
+            return;
+        }
+
+        System.out.print("정말 탈퇴 하시겠습니까?(y,n) : ");
+        String answer = sc.nextLine().toLowerCase();
+
+        if(answer.equals("y")){
+            memberService.signout(logonMemberId);
+            request.logout();
+            System.out.println(logonMemberId + "님 사이트를 이용해주셔서 감사합니다.");
+        }else if(answer.equals("n")){
+            System.out.println("탈퇴 절차를 취소합니다.");
+        }else{
+            System.out.println("y 혹은 n을 정확하게 입력하여 주시기 바랍니다.");
+        }
+    }
+
 }

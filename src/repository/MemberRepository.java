@@ -19,6 +19,10 @@ public class MemberRepository {
         return memberId;
     }
 
+    public void deleteMember(Member member){
+        store.remove(member);
+    }
+
     public Member getMemberByLoginId(String loginId){
 
         for(Member member : store){
