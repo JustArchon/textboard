@@ -70,4 +70,10 @@ public class Request {
         Map<String, Object> parameter = uriParser.getParameter();
         return parameter.get(key).toString();
     }
+
+    public boolean hasParam(String key){
+        // loginId, test
+        Map<String, Object> parameter = uriParser.getParameter();
+        return parameter.get(key) != null;
+    }
 }

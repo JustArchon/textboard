@@ -11,8 +11,8 @@ public class Member {
     private String name;
 
 
-    private LocalDateTime regDate;
-    private LocalDateTime updateDate;
+    private LocalDateTime regDate = LocalDateTime.now();
+    private LocalDateTime updateDate = LocalDateTime.now();
 
     public Member(int id, String loginId, String password, String name){
         this.id = id;
@@ -60,5 +60,9 @@ public class Member {
 
     public void setUpdateDate(LocalDateTime updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public LocalDateTime getRegDate() {
+        return regDate;
     }
 }

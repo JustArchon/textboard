@@ -4,6 +4,7 @@ import data.Member;
 import infra.Container;
 import infra.Request;
 import service.MemberService;
+import utils.Util;
 
 import java.util.Scanner;
 
@@ -27,6 +28,9 @@ public class MemberController implements Controller{
                 break;
             case "logout":
                 logout(request);
+                break;
+            case "detail":
+                detail(request);
                 break;
             default:
                 System.out.println("올바른 요청을 보내주시기 바랍니다.");
@@ -83,6 +87,24 @@ public class MemberController implements Controller{
         String logonMember = request.getLogonMemberId();
         System.out.println(logonMember + "님 로그아웃 되었습니다.");
         request.logout();
+    }
+    public void detail(Request request){
+        String paramKey = "loginId";
+        if(!Util.hasParam(request, paramKey)){
+            System.out.println(paramKey + " 파라미터가 필요합니다.");
+            return;
+        }
+        String loginId = request.getParameterStrValue(paramKey);
 
+        Member findMember = memberService.getMemberByLoginId(loginId);
+
+        if(findMember == null){
+            System.out.println("해당 회원은 존재하지 않습니다.");
+            return;
+        }
+        System.out.println(" == " + loginId + "님의 정보 == ");
+        System.out.println("아이디 : " + loginId);
+        System.out.println("이름 : " + findMember.getName());
+        System.out.println("가입일 : " + findMember.getRegDate());
     }
 }
