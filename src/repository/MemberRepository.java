@@ -36,4 +36,8 @@ public class MemberRepository {
     public boolean isExistsByLoginId(String loginId){
         return getMemberByLoginId(loginId) != null;
     }
+
+    public List<Member> getMembers() {
+        return store;
+    }
 }
