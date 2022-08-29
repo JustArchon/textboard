@@ -1,8 +1,11 @@
 package controller;
 
+import data.Article;
+import data.Member;
 import infra.Container;
 import infra.Request;
 import service.ArticleService;
+import utils.Util;
 
 import java.util.Scanner;
 
@@ -21,15 +24,38 @@ public class ArticleController implements Controller{
             case "write":
                 write(request);
                 break;
-            case "read":
-                read();
+            case "detail":
+                detail(request);
                 break;
             default:
                 System.out.println("존재하지 않는 요청입니다.");
                 break;
         }
     }
-    public void read(){
+    public void detail(Request request){
+        String paramKey = "id";
+        if(!Util.hasParam(request, paramKey)){
+            System.out.println(paramKey + " 파라미터가 필요합니다.");
+            return;
+        }
+        int articleId = request.getParameterIntValue(paramKey);
+
+        Article findArticle = articleService.getById(articleId);
+
+        if(findArticle == null){
+            System.out.println("해당 게시글은 존재하지 않습니다.");
+            return;
+        }
+
+        System.out.println("== " + articleId + "번 게시글 ==");
+        System.out.print("작성자 : ");
+        System.out.println(findArticle.getAuthor());
+        System.out.print("제목 : ");
+        System.out.println(findArticle.getTitle());
+        System.out.print("내용 : ");
+        System.out.println(findArticle.getBody());
+        System.out.print("작성일 : ");
+        System.out.println(findArticle.getUpdateDate());
 
     }
     public void write(Request request){

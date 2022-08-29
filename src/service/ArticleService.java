@@ -1,6 +1,7 @@
 package service;
 
 
+import data.Article;
 import infra.Container;
 import repository.ArticleRepository;
 
@@ -13,5 +14,9 @@ public class ArticleService {
 
     public ArticleService(){
         this.articleRepository = Container.articleRepository;
+    }
+
+    public Article getById(int articleId) {
+        return articleRepository.getById(articleId);
     }
 }
