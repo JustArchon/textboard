@@ -6,6 +6,7 @@ import infra.Container;
 import repository.ArticleRepository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ArticleService {
 
@@ -26,4 +27,7 @@ public class ArticleService {
         articleRepository.delete(article);
     }
 
+    public List<Article> getArticles() {
+        return articleRepository.getArticles();
+    }
 }
