@@ -33,6 +33,13 @@ public class Application {
                 continue;
             }
 
+            Filter filter = new Filter(request);
+
+            if(!filter.isValidRequest()){
+                System.out.println("잘못된 요청입니다.");
+                continue;
+            }
+
             Controller controller = getController(request.getControllerCode());
 
             if(controller != null){

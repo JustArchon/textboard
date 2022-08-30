@@ -2,6 +2,7 @@ package repository;
 
 import data.Article;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,5 +28,16 @@ public class ArticleRepository {
             }
         }
         return null;
+    }
+
+
+    public void delete(Article article) {
+        store.remove(article);
+    }
+
+    public void modify(Article article, String newtitle, String newbody, LocalDateTime newtime) {
+        article.setTitle(newtitle);
+        article.setBody(newbody);
+        article.setUpdateDate(newtime);
     }
 }
