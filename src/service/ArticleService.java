@@ -26,7 +26,4 @@ public class ArticleService {
         articleRepository.delete(article);
     }
 
-    public void modify(Article article,String newtitle, String newbody, LocalDateTime newtime) {
-        articleRepository.modify(article, newtitle, newbody, newtime);
-    }
 }

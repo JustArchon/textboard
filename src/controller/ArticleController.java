@@ -63,6 +63,8 @@ public class ArticleController implements Controller{
         System.out.println(findArticle.getBody());
         System.out.print("작성일 : ");
         System.out.println(findArticle.getRegDate());
+        System.out.print("수정일 : ");
+        System.out.println(findArticle.getUpdateDate());
 
     }
     public void write(Request request){
@@ -124,12 +126,14 @@ public class ArticleController implements Controller{
             System.out.println("권한이 없습니다.");
             return;
         }
-        System.out.println("== 게시글 수정 ==");
+        System.out.println("== " + articleId + "번 게시글 수정 ==");
         System.out.print("제목 : ");
-        String newtitle = sc.nextLine();
+        String newtitle = sc.nextLine().trim();
         System.out.print("내용 : ");
-        String newbody = sc.nextLine();
-        LocalDateTime newtime = LocalDateTime.now();
-        articleService.modify(findArticle,newtitle,newbody,newtime);
+        String newbody = sc.nextLine().trim();
+        findArticle.setTitle(newtitle);
+        findArticle.setBody(newbody);
+        findArticle.setUpdateDate(LocalDateTime.now());
+        System.out.println("정상적으로 글이 수정되었습니다.");
     }
 }

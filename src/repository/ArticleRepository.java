@@ -34,10 +34,4 @@ public class ArticleRepository {
     public void delete(Article article) {
         store.remove(article);
     }
-
-    public void modify(Article article, String newtitle, String newbody, LocalDateTime newtime) {
-        article.setTitle(newtitle);
-        article.setBody(newbody);
-        article.setUpdateDate(newtime);
-    }
 }
